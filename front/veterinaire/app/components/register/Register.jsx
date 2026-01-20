@@ -103,8 +103,8 @@ export default function RegisterPage() {
             onChange={(e) => setRole(e.target.value)}
             required
           >
-            <option value="OWNER">OWNER</option>
-            <option value="VETERINARIAN">VETERINARIAN</option>
+            <option value="OWNER">propriétaire</option>
+            <option value="VETERINARIAN">veterinaire</option>
           </select>
 
           <input
