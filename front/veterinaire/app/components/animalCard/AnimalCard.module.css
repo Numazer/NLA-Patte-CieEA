@@ -1,0 +1,41 @@
+.animal-card {
+  display: flex;       
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  max-width: 500px;
+  margin: 10px auto;
+}
+
+.animal-card:hover {
+  box-shadow: 0 8px 20px rgba(133, 32, 127, 0.15);
+  transform: translateY(-3px);
+}
+
+.animal-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 16px;
+}
+
+.animal-info h2 {
+  font-size: 20px;
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.animal-info p {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0;
+}
+
+.animal-info p strong {
+  color: #000;
+}

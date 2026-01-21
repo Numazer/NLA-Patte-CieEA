@@ -24,11 +24,8 @@ export default function LoginPage() {
         { email, password },
         { withCredentials: true }
       );
-
-      const { token, user } = response.data;
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+    
+      const { user } = response.data;
 
       router.push("/");
     } catch (err) {
@@ -46,7 +43,7 @@ export default function LoginPage() {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <input
           type="email"
           placeholder="Email"
@@ -63,7 +60,11 @@ export default function LoginPage() {
           required
         />
 
-        <button type="submit" disabled={isLoading}>
+        <button
+          type="submit"
+          disabled={isLoading}
+          style={{ padding: 10, backgroundColor: "#0070f3", color: "#fff", border: "none", borderRadius: 4, cursor: "pointer" }}
+        >
           {isLoading ? "Connexion..." : "Se connecter"}
         </button>
       </form>
