@@ -2,12 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Header.module.css";
+import { useAuth } from "@/app/context/authContext";
 
 export default function Header() {
+  const { user } = useAuth();
+
   return (
     <header className={styles.header}>
       {/* Texte */}
-      <h1 className={styles.title}>Hello, Human!</h1>
+      <h1 className={styles.title}>Hello, {user ? user.first_name : "human"}</h1>
 
       {/* Icône redirige vers /contact */}
       <Link href="/contact" className={styles.iconBox}>

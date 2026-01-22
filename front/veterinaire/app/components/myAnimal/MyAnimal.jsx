@@ -1,7 +1,10 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "./MyAnimal.module.css"; // fichier CSS séparé
 
 export default function MyAnimal() {
   const [animals, setAnimals] = useState([]);
@@ -10,21 +13,19 @@ export default function MyAnimal() {
 
   useEffect(() => {
     const fetchMyAnimals = async () => {
-        try {
-            const response = await axios.get(
-            "http://localhost:4000/api/animals/my",
-            {
-                withCredentials: true, // 🔑 envoie les cookies httpOnly
-            }
-            );
-            setAnimals(response.data);
-        } catch (err) {
-            setError("Impossible de charger les animaux");
-        } finally {
-            setLoading(false);
-        }
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/api/animals/my",
+          { withCredentials: true }
+        );
+        setAnimals(response.data);
+      } catch (err) {
+        setError("Impossible de charger les animaux");
+      } finally {
+        setLoading(false);
+      }
     };
-    
+
     fetchMyAnimals();
   }, []);
 
@@ -32,20 +33,51 @@ export default function MyAnimal() {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <div>
-      <h2>Mes animaux</h2>
+  <div className={styles.container}>
+    <h2 className={styles.title}>Mes animaux</h2>
 
-      {animals.length === 0 ? (
-        <p>Aucun animal enregistré</p>
-      ) : (
-        <ul>
-          {animals.map((animal) => (
-            <li key={animal.animal_id}>
-              <strong>{animal.name}</strong> – {animal.species}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+    {animals.length === 0 ? (
+      <p className={styles.animalInfo}>Aucun animal enregistré</p>
+    ) : (
+      <div className={styles.grid}>
+        {animals.map((animal) => (
+          <Link
+            key={animal.animal_id}
+            href={`/animals/${animal.animal_id}`}
+            className={styles.cardLink}
+          >
+            <div className={styles.card}>
+              <img
+                src={animal.photo || "/default-animal.jpg"}
+                alt={animal.name}
+                className={styles.photo}
+              />
+
+              <h3 className={styles.animalName}>{animal.name}</h3>
+
+              <p className={styles.animalInfo}>
+                <strong>Espèce :</strong> {animal.species}
+              </p>
+
+              <p className={styles.animalInfo}>
+                <strong>Race :</strong> {animal.race}
+              </p>
+
+              <p className={styles.animalInfo}>
+                <strong>Âge :</strong>{" "}
+                {new Date().getFullYear() -
+                  new Date(animal.date_of_birth).getFullYear()}{" "}
+                ans
+              </p>
+
+              <p className={styles.animalInfo}>
+                <strong>Poids :</strong> {animal.weight_kg} kg
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    )}
+  </div>
+);
 }

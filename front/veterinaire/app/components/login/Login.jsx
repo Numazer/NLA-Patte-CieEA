@@ -24,8 +24,10 @@ export default function LoginPage() {
         { email, password },
         { withCredentials: true }
       );
+
     
       const { user } = response.data;
+      localStorage.setItem("user", JSON.stringify(user));
 
       router.push("/");
     } catch (err) {

@@ -1,21 +1,52 @@
-.categoryButton {
-  padding: 10px 16px;
-  border-radius: 10px;
-  background: #eee;
-  border: none;
-  cursor: pointer;
-  transition: 0.18s;
+.container {
+  margin-top: 30px;
 }
 
-.categoryButton:hover:not(.active) {
-  background: #ddd;
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.categoryButton {
+  padding: 8px 16px;
+  border: 1px solid #0070f3;
+  border-radius: 6px;
+  background: #fff;
+  color: #0070f3;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.categoryButton:hover {
+  background: #0070f3;
+  color: #fff;
 }
 
 .active {
-  background: #7b61ff;
-  color: white;
+  background: #0070f3;
+  color: #fff;
 }
 
-.active:hover {
-  background: #6a52ff;
+.cardsContainer {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.error {
+  color: red;
 }
