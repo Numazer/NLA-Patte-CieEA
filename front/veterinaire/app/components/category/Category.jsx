@@ -23,7 +23,7 @@ export default function Category({ animalId }) {
 
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/animals/${animalId}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/animals/${animalId}`,
           { withCredentials: true }
         );
 

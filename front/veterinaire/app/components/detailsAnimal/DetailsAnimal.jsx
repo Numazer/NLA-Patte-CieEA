@@ -18,7 +18,7 @@ export default function DetailsAnimal({ animalId }) {
         setError("");
 
         const res = await axios.get(
-          `http://localhost:4000/api/animals/${animalId}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/animals/${animalId}`,
           { withCredentials: true }
         );
 
