@@ -39,20 +39,6 @@ export default function Header() {
             Logout
           </button>
         )}
-
-        {/* Icône panier */}
-        <Link href="/contact" className={styles.iconBox}>
-          <div className={styles.notification}>
-            <Image
-              src="/shopping-bag.png"
-              alt="icon"
-              width={24}
-              height={24}
-              className={styles.icon}
-            />
-            <span className={styles.badge}>2</span>
-          </div>
-        </Link>
       </div>
     </header>
   );
