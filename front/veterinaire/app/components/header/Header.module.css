@@ -27,6 +27,31 @@
   height: 28px;
 }
 
+.authButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  background: black;
+  color: white;
+  border-radius: 6px;
+}
+
+.btnOutline {
+  padding: 6px 12px;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.btnDanger {
+  padding: 6px 12px;
+  background: crimson;
+  color: white;
+  border-radius: 6px;
+}
+
 /* notif rouge */
 .badge {
   position: absolute;

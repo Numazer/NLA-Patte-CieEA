@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/authContext";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth(); // 🔥 IMPORTANT
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,22 +19,10 @@ export default function LoginPage() {
 
     try {
       setIsLoading(true);
-
-      const response = await axios.post(
-        "http://localhost:4000/api/auth/login",
-        { email, password },
-        { withCredentials: true }
-      );
-
-    
-      const { user } = response.data;
-      localStorage.setItem("user", JSON.stringify(user));
-
+      await login(email, password); // ✅ met à jour le context
       router.push("/");
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Email ou mot de passe incorrect"
-      );
+      setError("Email ou mot de passe incorrect");
     } finally {
       setIsLoading(false);
     }
@@ -62,11 +51,7 @@ export default function LoginPage() {
           required
         />
 
-        <button
-          type="submit"
-          disabled={isLoading}
-          style={{ padding: 10, backgroundColor: "#0070f3", color: "#fff", border: "none", borderRadius: 4, cursor: "pointer" }}
-        >
+        <button type="submit" disabled={isLoading}>
           {isLoading ? "Connexion..." : "Se connecter"}
         </button>
       </form>
